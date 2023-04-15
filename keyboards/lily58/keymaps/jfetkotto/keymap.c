@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         KC_GRV,  KC_EXLM, KC_AT,   KC_HASH,  KC_DLR, KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LCBR, KC_RCBR, KC_TILD,
-        KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RSFT,
+        KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RSFT_T(KC_BSLS),
                                KC_LCTRL,MO(_SYMB), KC_LALT, KC_SPC, KC_ENT, KC_BSPC, MO(_FUNC), KC_RGUI
         ),
 
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,     KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU,                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-        KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_LBRC, KC_RBRC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RSFT,
+        KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_LBRC, KC_RBRC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RSFT_T(KC_BSLS),
                                KC_LCTRL,MO(_SYMB), KC_LALT, KC_SPC, KC_ENT, KC_BSPC, MO(_FUNC), KC_RGUI
         ),
 };
@@ -104,11 +104,12 @@ const char *read_mode_icon(bool swap);
 bool oled_task_user(void) {
         if (is_keyboard_master()) {
                 // If you want to change the display of OLED, you need to change here
-                oled_write_ln(read_layer_state(), false);
+                //oled_write_ln(read_layer_state(), false);
                 //oled_write_ln(read_keylog(), false);
                 //oled_write_ln(read_keylogs(), false);
-                oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
+                //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
                 //oled_write_ln(read_timelog(), false);
+                oled_write(read_logo(), false);
         } else {
                 oled_write(read_logo(), false);
         }
